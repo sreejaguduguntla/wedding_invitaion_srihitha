@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Srihitha & Bhadrinath — Wedding Invitation</title>
+  <meta name="description" content="You are cordially invited to celebrate the wedding of Srihitha & Bhadrinath. Join us for Haldi, Sangeet, Mehendi, Wedding Ceremony and Reception." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Floating Petals -->
+  <div class="petals-container" id="petals"></div>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero" id="home">
+    <div class="hero-overlay"></div>
+    <img src="assets/wedding_hero.png" alt="Srihitha and Bhadrinath wedding illustration" class="hero-bg-img" />
+
+    <div class="hero-content">
+      <p class="hero-subtitle animate-up">Together with their families</p>
+      <div class="hero-names animate-up delay-1">
+        <span class="name-bride">Srihitha</span>
+        <div class="name-divider">
+          <span class="amp">&</span>
+          <div class="divider-ornament">✦ ✦ ✦</div>
+        </div>
+        <span class="name-groom">Bhadrinath</span>
+      </div>
+      <p class="hero-invite-text animate-up delay-2">joyfully request the honour of your presence</p>
+      <div class="hero-date animate-up delay-3">
+        <span class="date-text">25th November 2026</span>
+      </div>
+      <a href="#events" class="hero-cta animate-up delay-4">View Our Celebrations ↓</a>
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="scroll-dot"></div>
+    </div>
+  </section>
+
+  <!-- ===== WELCOME MESSAGE ===== -->
+  <section class="welcome-section" id="welcome">
+    <div class="mandala-bg">
+      <img src="assets/mandala.png" alt="" class="mandala-img" aria-hidden="true" />
+    </div>
+    <div class="welcome-content">
+      <div class="section-tag">❀ Our Story ❀</div>
+      <h2 class="section-heading">A New Chapter Begins</h2>
+      <p class="welcome-text">
+        Two hearts, one destiny. We are overjoyed to share this beautiful journey with the people we love most. 
+        Your presence and blessings will make our celebration complete.
+      </p>
+      <p class="welcome-text">
+        Come, be a part of our joy as we begin this sacred and wonderful adventure together.
+      </p>
+      <div class="welcome-ornament">— With Love & Gratitude —</div>
+    </div>
+  </section>
+
+  <!-- ===== COUNTDOWN ===== -->
+  <section class="countdown-section" id="countdown">
+    <div class="countdown-inner">
+      <p class="countdown-label">Wedding Countdown</p>
+      <div class="countdown-timer" id="countdown-timer">
+        <div class="countdown-unit">
+          <span class="countdown-num" id="days">00</span>
+          <span class="countdown-unit-label">Days</span>
+        </div>
+        <div class="countdown-colon">:</div>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="hours">00</span>
+          <span class="countdown-unit-label">Hours</span>
+        </div>
+        <div class="countdown-colon">:</div>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="minutes">00</span>
+          <span class="countdown-unit-label">Minutes</span>
+        </div>
+        <div class="countdown-colon">:</div>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="seconds">00</span>
+          <span class="countdown-unit-label">Seconds</span>
+        </div>
+      </div>
+      <p class="countdown-sublabel">Until They Say "I Do"</p>
+    </div>
+  </section>
+
+  <!-- ===== TEAM BRIDE vs TEAM GROOM ===== -->
+  <section class="team-section" id="teams">
+    <div class="team-bg-pattern"></div>
+    <div class="section-header">
+      <div class="section-tag">❀ Pick Your Side ❀</div>
+      <h2 class="section-heading">Whose Side Are You On?</h2>
+      <p class="section-subtext">The real competition begins here 👀</p>
+    </div>
+
+    <div class="team-arena">
+
+      <!-- Team Bride -->
+      <div class="team-card team-bride-card" id="team-bride-card">
+        <div class="team-glow team-bride-glow"></div>
+        <div class="team-emoji-big">👰</div>
+        <h3 class="team-name bride">Team Bride</h3>
+        <p class="team-tagline">"She slays, always."</p>
+        <button class="team-btn bride-btn" id="btn-bride" onclick="castVote('bride')">
+          💖 Join Team Bride
+        </button>
+        <div class="team-badge" id="bride-badge" style="display:none;">
+          <span>💖 You're Team Bride!</span>
+        </div>
+      </div>
+
+      <!-- VS Divider -->
+      <div class="team-vs">
+        <div class="vs-circle">VS</div>
+        <div class="vs-line"></div>
+      </div>
+
+      <!-- Team Groom -->
+      <div class="team-card team-groom-card" id="team-groom-card">
+        <div class="team-glow team-groom-glow"></div>
+        <div class="team-emoji-big">🤵</div>
+        <h3 class="team-name groom">Team Groom</h3>
+        <p class="team-tagline">"The luckiest man alive."</p>
+        <button class="team-btn groom-btn" id="btn-groom" onclick="castVote('groom')">
+          💙 Join Team Groom
+        </button>
+        <div class="team-badge" id="groom-badge" style="display:none;">
+          <span>💙 You're Team Groom!</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Reaction message -->
+    <div class="team-reaction" id="team-reaction"></div>
+
+    <!-- Live scoreboard bar -->
+    <div class="scoreboard" id="scoreboard" style="display:none;">
+      <div class="score-bar-wrap">
+        <span class="score-label bride-label">💖 Bride</span>
+        <div class="score-bar">
+          <div class="score-fill bride-fill" id="bride-fill"></div>
+          <div class="score-fill groom-fill" id="groom-fill"></div>
+        </div>
+        <span class="score-label groom-label">Groom 💙</span>
+      </div>
+    </div>
+
+    <!-- Confetti container -->
+    <div class="confetti-container" id="confetti-container"></div>
+  </section>
+
+  <!-- ===== EVENTS SECTION ===== -->
+  <section class="events-section" id="events">
+    <div class="section-header">
+      <div class="section-tag">❀ Celebrations ❀</div>
+      <h2 class="section-heading">Wedding Events</h2>
+      <p class="section-subtext">Join us in celebrating across these special occasions</p>
+    </div>
+
+    <div class="events-grid">
+
+      <!-- Haldi -->
+      <div class="event-card" id="event-haldi">
+        <div class="event-icon-wrap">
+          <div class="event-icon">🌼</div>
+        </div>
+        <div class="event-ribbon">Morning</div>
+        <h3 class="event-title">Haldi Ceremony</h3>
+        <div class="event-date">21st November 2026</div>
+        <div class="event-time">Morning</div>
+        <p class="event-desc">A vibrant turmeric ritual to bless the couple with radiance, joy and prosperity.</p>
+        <div class="event-venue">
+          <span class="venue-icon">📍</span>
+          <div>
+            <strong>The Lush Retreat</strong><br />
+            Tarrur, Telangana
+          </div>
+        </div>
+        <div class="dress-code-badge">👗 Dress Code: <span>Orange</span></div>
+        <a href="https://maps.app.goo.gl/ZZgj6e6vPPCRzE4G7" target="_blank" class="map-btn">📌 Get Directions</a>
+      </div>
+
+      <!-- Sangeet -->
+      <div class="event-card" id="event-sangeet">
+        <div class="event-icon-wrap">
+          <div class="event-icon">🎶</div>
+        </div>
+        <div class="event-ribbon">Evening</div>
+        <h3 class="event-title">Sangeet Night</h3>
+        <div class="event-date">21st November 2026</div>
+        <div class="event-time">Evening</div>
+        <p class="event-desc">An evening of music, dance and merriment as two families unite in celebration.</p>
+        <div class="event-venue">
+          <span class="venue-icon">📍</span>
+          <div>
+            <strong>The Lush Retreat</strong><br />
+            Tarrur, Telangana
+          </div>
+        </div>
+        <div class="dress-code-badge">✨ Dress Code: <span>Glam</span></div>
+        <a href="https://maps.app.goo.gl/ZZgj6e6vPPCRzE4G7" target="_blank" class="map-btn">📌 Get Directions</a>
+      </div>
+
+      <!-- Pellikuthuru -->
+      <div class="event-card" id="event-pellikuthuru">
+        <div class="event-icon-wrap">
+          <div class="event-icon">👰</div>
+        </div>
+        <div class="event-ribbon">Morning</div>
+        <h3 class="event-title">Pellikuthuru</h3>
+        <div class="event-date">23rd November 2026</div>
+        <div class="event-time">Morning</div>
+        <p class="event-desc">A beautiful Telugu ritual where the bride is adorned and dressed as a bride for the very first time, marking the beginning of wedding festivities.</p>
+        <div class="event-venue">
+          <span class="venue-icon">📍</span>
+          <strong>The Bride's Residence</strong>
+        </div>
+        <div class="dress-code-badge">👘 Dress Code: <span>Traditional</span></div>
+        <a href="https://maps.app.goo.gl/4Pq36LWhVe91rzMH8" target="_blank" class="map-btn">📌 Get Directions</a>
+      </div>
+
+      <!-- Mehendi -->
+      <div class="event-card" id="event-mehendi">
+        <div class="event-icon-wrap">
+          <div class="event-icon">🌿</div>
+        </div>
+        <div class="event-ribbon">Evening</div>
+        <h3 class="event-title">Mehendi Evening</h3>
+        <div class="event-date">23rd November 2026</div>
+        <div class="event-time">Evening</div>
+        <p class="event-desc">Intricate henna artistry and festive joy adorn the hands of our beautiful bride.</p>
+        <div class="event-venue">
+          <span class="venue-icon">📍</span>
+          <strong>The Bride's Residence</strong>
+        </div>
+        <div class="dress-code-badge">🌿 Dress Code: <span>Green</span></div>
+        <a href="https://maps.app.goo.gl/4Pq36LWhVe91rzMH8" target="_blank" class="map-btn">📌 Get Directions</a>
+      </div>
+
+      <!-- Wedding -->
+      <div class="event-card featured" id="event-wedding">
+        <div class="featured-badge">✨ Main Ceremony</div>
+        <div class="event-icon-wrap">
+          <div class="event-icon">💍</div>
+        </div>
+        <h3 class="event-title">Wedding Muhurtham</h3>
+        <div class="event-date">25th November 2026</div>
+        <div class="event-time">9:34 A.M.</div>
+        <p class="event-desc">The sacred union of Srihitha & Bhadrinath in a traditional wedding ceremony.</p>
+        <div class="event-venue">
+          <span class="venue-icon">📍</span>
+          <div>
+            <strong>J Convention & Resorts</strong><br />
+            Thattinnaram, Bandlaguda,<br />
+            Nagole, Hyderabad
+          </div>
+        </div>
+        <div class="dress-code-badge">💍 Dress Code: <span>Traditional</span></div>
+        <a href="https://maps.app.goo.gl/Ep2YmD4dTyJzpZsR7" target="_blank" class="map-btn">📌 Get Directions</a>
+      </div>
+
+      <!-- Reception -->
+      <div class="event-card" id="event-reception">
+        <div class="event-icon-wrap">
+          <div class="event-icon">🥂</div>
+        </div>
+        <h3 class="event-title">Reception</h3>
+        <div class="event-date">26th November 2026</div>
+        <div class="event-time">Evening</div>
+        <p class="event-desc">A grand celebration to welcome the newly-weds with dinner, music and joy.</p>
+        <div class="event-venue">
+          <span class="venue-icon">📍</span>
+          <div>
+            <strong>Kalyana Sai Gardens</strong><br />
+            Rajanagaram Road,<br />
+            Wanaparthy, Telangana
+          </div>
+        </div>
+        <div class="dress-code-badge">🥂 Dress Code: <span>Surprise with your best</span></div>
+        <a href="https://maps.app.goo.gl/AYepKQHZvNJ3TJzdA" target="_blank" class="map-btn">📌 Get Directions</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== COUPLE SECTION ===== -->
+  <section class="couple-section" id="couple">
+    <div class="section-header">
+      <div class="section-tag">❀ The Couple ❀</div>
+      <h2 class="section-heading">Two Souls, One Love</h2>
+    </div>
+    <div class="couple-grid">
+      <div class="couple-card bride">
+        <div class="couple-avatar">
+          <div class="avatar-ring"></div>
+          <div class="avatar-emoji">👰</div>
+        </div>
+        <h3 class="couple-name">Srihitha</h3>
+        <p class="couple-role">The Bride</p>
+        <p class="couple-desc">Graceful, radiant, and full of love — Srihitha brings warmth and light to every room she enters.</p>
+      </div>
+
+      <div class="couple-heart">
+        <div class="heart-pulse">💗</div>
+        <div class="forever-text">Forever</div>
+      </div>
+
+      <div class="couple-card groom">
+        <div class="couple-avatar">
+          <div class="avatar-ring"></div>
+          <div class="avatar-emoji">🤵</div>
+        </div>
+        <h3 class="couple-name">Bhadrinath</h3>
+        <p class="couple-role">The Groom</p>
+        <p class="couple-desc">Steadfast, kind, and deeply devoted — Bhadrinath is the anchor that completes Srihitha's world.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PHOTO GALLERY ===== -->
+  <section class="gallery-section" id="gallery">
+    <div class="section-header">
+      <div class="section-tag">❀ Gallery ❀</div>
+      <h2 class="section-heading">Captured Moments</h2>
+      <p class="section-subtext">A glimpse into the love story of Srihitha & Bhadrinath</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item large">
+        <img src="assets/wedding_hero.png" alt="Bride and Groom under floral arch" />
+        <div class="gallery-overlay">
+          <span>💕</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="assets/mandala.png" alt="Wedding mandala art" />
+        <div class="gallery-overlay"><span>🌸</span></div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-mandala">
+      <img src="assets/mandala.png" alt="" aria-hidden="true" />
+    </div>
+    <div class="footer-names">Srihitha <span>&</span> Bhadrinath</div>
+    <p class="footer-date">25 · 11 · 2026</p>
+    <p class="footer-quote">"Two hearts, one home, endless love."</p>
+    <p class="footer-credit">Made with ❤️ for our dearest Srihitha</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
