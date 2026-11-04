@@ -10,7 +10,62 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="intro-active">
+
+  <!-- ===== ENVELOPE INTRO ===== -->
+  <div id="env-intro" class="env-intro">
+
+    <div class="env-stars-layer" id="env-stars-layer"></div>
+
+    <div class="env-headline">
+      <p class="env-pre">With the blessings of</p>
+      <p class="env-families">Our Families</p>
+    </div>
+
+    <div class="env-stage" id="env-stage">
+
+      <!-- Top half: closed flap -->
+      <div class="env-top" id="env-top">
+        <div class="env-flap-tri"></div>
+        <div class="env-shade-l"></div>
+        <div class="env-shade-r"></div>
+        <div class="env-flap-crease"></div>
+        <span class="env-flap-text">With Love</span>
+      </div>
+
+      <!-- Torn edge between halves -->
+      <div class="env-tear-gap">
+        <svg class="env-tear-svg" preserveAspectRatio="none" viewBox="0 0 400 18" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,9 C7,1 13,17 20,9 C27,1 33,17 40,9 C47,1 53,17 60,9 C67,1 73,17 80,9 C87,1 93,17 100,9 C107,1 113,17 120,9 C127,1 133,17 140,9 C147,1 153,17 160,9 C167,1 173,17 180,9 C187,1 193,17 200,9 C207,1 213,17 220,9 C227,1 233,17 240,9 C247,1 253,17 260,9 C267,1 273,17 280,9 C287,1 293,17 300,9 C307,1 313,17 320,9 C327,1 333,17 340,9 C347,1 353,17 360,9 C367,1 373,17 380,9 C387,1 393,17 400,9" fill="none" stroke="#c9a96e" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <!-- Bottom half: envelope body with wax seal -->
+      <div class="env-bot" id="env-bot">
+        <div class="env-fold-l"></div>
+        <div class="env-fold-r"></div>
+        <div class="env-wax-seal">
+          <div class="env-wax-inner">
+            <span class="env-wax-s">S</span>
+            <span class="env-wax-diamond">✦</span>
+            <span class="env-wax-b">B</span>
+          </div>
+        </div>
+        <p class="env-couple-text">Srihitha &amp; Bhadrinath</p>
+        <p class="env-date-text">25 · 11 · 2026</p>
+      </div>
+
+    </div><!-- .env-stage -->
+
+    <div class="env-cta" id="env-cta">
+      <button class="env-open-btn" id="env-open-btn" onclick="tearEnvelope()">
+        <span class="env-btn-emoji">✉</span>
+        <span class="env-btn-label">Tear open your invitation</span>
+      </button>
+      <div class="env-hint-arrow">↓</div>
+    </div>
+
+  </div><!-- #env-intro -->
 
   <!-- Floating Petals -->
   <div class="petals-container" id="petals"></div>
@@ -363,7 +418,7 @@
   </footer>
 
   <!-- ===== BACKGROUND MUSIC ===== -->
-  <audio id="bg-music" loop preload="auto">
+  <audio id="bg-music" preload="auto">
     <source src="Seetha Kalyana Vaibhogame.mp3" type="audio/mpeg" />
   </audio>
 

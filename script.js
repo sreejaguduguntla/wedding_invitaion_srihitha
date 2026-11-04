@@ -197,59 +197,106 @@ updateVoteUI();
 console.log('💍 Srihitha & Bhadrinath | 25th November 2026 | Made with Love ❤️');
 
 // ===== BACKGROUND MUSIC =====
-(function () {
-  const audio    = document.getElementById('bg-music');
-  const btn      = document.getElementById('music-toggle');
-  const icon     = document.getElementById('music-icon');
-  const info     = document.getElementById('music-info');
+const START_TIME = 70; // 1 minute 10 seconds
+let _musicStarted = false;
 
-  // Start playback from 1:10 (70 seconds)
-  const START_TIME = 70;
-
-  let started = false;
-
-  function startMusic() {
-    if (started) return;
-    started = true;
-    audio.currentTime = START_TIME;
-    audio.volume = 0.6;
-    audio.play().catch(() => {});
-    btn.classList.remove('paused');
-    icon.textContent = '🎵';
-    // Show song name briefly
-    info.classList.add('visible');
-    setTimeout(() => info.classList.remove('visible'), 4000);
-  }
-
-  // Auto-start on first user interaction (required by browsers)
-  const autoStartEvents = ['click', 'touchstart', 'keydown', 'scroll'];
-  function onFirstInteraction() {
-    startMusic();
-    autoStartEvents.forEach(ev => document.removeEventListener(ev, onFirstInteraction, { once: true }));
-  }
-  autoStartEvents.forEach(ev => document.addEventListener(ev, onFirstInteraction, { once: true, passive: true }));
-
-  // Toggle play / pause
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    if (!started) {
-      startMusic();
-      return;
-    }
-    if (audio.paused) {
-      audio.play().catch(() => {});
-      btn.classList.remove('paused');
-      icon.textContent = '🎵';
-    } else {
-      audio.pause();
-      btn.classList.add('paused');
-      icon.textContent = '🔇';
-    }
-  });
-
-  // When looping, jump back to 1:10 instead of the very beginning
+function startMusic() {
+  if (_musicStarted) return;
+  _musicStarted = true;
+  const audio = document.getElementById('bg-music');
+  const btn   = document.getElementById('music-toggle');
+  const icon  = document.getElementById('music-icon');
+  const info  = document.getElementById('music-info');
+  audio.currentTime = START_TIME;
+  audio.volume = 0.6;
+  audio.play().catch(() => {});
+  btn.classList.remove('paused');
+  icon.textContent = '🎵';
+  // Show song name briefly
+  info.classList.add('visible');
+  setTimeout(() => info.classList.remove('visible'), 4000);
+  // Loop back to 1:10 instead of beginning
   audio.addEventListener('ended', () => {
     audio.currentTime = START_TIME;
     audio.play().catch(() => {});
   });
-})();
+}
+
+// Music toggle button (play/pause)
+document.getElementById('music-toggle').addEventListener('click', (e) => {
+  e.stopPropagation();
+  const audio = document.getElementById('bg-music');
+  const icon  = document.getElementById('music-icon');
+  const btn   = document.getElementById('music-toggle');
+  if (!_musicStarted) { startMusic(); return; }
+  if (audio.paused) {
+    audio.play().catch(() => {});
+    btn.classList.remove('paused');
+    icon.textContent = '🎵';
+  } else {
+    audio.pause();
+    btn.classList.add('paused');
+    icon.textContent = '🔇';
+  }
+});
+
+// ===== ENVELOPE INTRO =====
+let _torn = false;
+
+function initEnvStars() {
+  const layer = document.getElementById('env-stars-layer');
+  for (let i = 0; i < 60; i++) {
+    const s = document.createElement('div');
+    s.className = 'env-star';
+    const size = Math.random() * 3 + 1;
+    s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;width:${size}px;height:${size}px;--dur:${(Math.random()*2.5+1.5).toFixed(1)}s;--delay:${(Math.random()*3).toFixed(1)}s;`;
+    layer.appendChild(s);
+  }
+}
+
+function burstParticles() {
+  const emojis = ['✨','🌸','💕','🌺','💍','⭐','🌼','💖'];
+  const cx = window.innerWidth / 2;
+  const cy = window.innerHeight / 2;
+  for (let i = 0; i < 22; i++) {
+    const p = document.createElement('div');
+    p.className = 'env-burst-particle';
+    const angle = (Math.PI * 2 / 22) * i;
+    const dist  = 80 + Math.random() * 140;
+    p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    p.style.cssText = `left:${cx}px;top:${cy}px;--tx:${(Math.cos(angle)*dist).toFixed(0)}px;--ty:${(Math.sin(angle)*dist-60).toFixed(0)}px;--fly-dur:${(Math.random()*0.4+0.7).toFixed(2)}s;animation-delay:${(Math.random()*0.1).toFixed(2)}s;`;
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 1300);
+  }
+}
+
+function tearEnvelope() {
+  if (_torn) return;
+  _torn = true;
+
+  const stage = document.getElementById('env-stage');
+  const intro = document.getElementById('env-intro');
+  const cta   = document.getElementById('env-cta');
+
+  cta.style.opacity = '0';
+  cta.style.transition = 'opacity 0.2s ease';
+
+  // Trigger the split animation
+  stage.classList.add('tearing');
+
+  // Particle burst + music start
+  burstParticles();
+  startMusic();
+
+  // Fade out whole intro
+  setTimeout(() => intro.classList.add('opening'), 450);
+
+  // Remove intro and restore scrolling
+  setTimeout(() => {
+    intro.style.display = 'none';
+    document.body.classList.remove('intro-active');
+  }, 1050);
+}
+
+// Boot
+initEnvStars();
