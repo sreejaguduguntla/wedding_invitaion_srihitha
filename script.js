@@ -195,3 +195,61 @@ function launchConfetti() {
 updateVoteUI();
 
 console.log('💍 Srihitha & Bhadrinath | 25th November 2026 | Made with Love ❤️');
+
+// ===== BACKGROUND MUSIC =====
+(function () {
+  const audio    = document.getElementById('bg-music');
+  const btn      = document.getElementById('music-toggle');
+  const icon     = document.getElementById('music-icon');
+  const info     = document.getElementById('music-info');
+
+  // Start playback from 1:10 (70 seconds)
+  const START_TIME = 70;
+
+  let started = false;
+
+  function startMusic() {
+    if (started) return;
+    started = true;
+    audio.currentTime = START_TIME;
+    audio.volume = 0.6;
+    audio.play().catch(() => {});
+    btn.classList.remove('paused');
+    icon.textContent = '🎵';
+    // Show song name briefly
+    info.classList.add('visible');
+    setTimeout(() => info.classList.remove('visible'), 4000);
+  }
+
+  // Auto-start on first user interaction (required by browsers)
+  const autoStartEvents = ['click', 'touchstart', 'keydown', 'scroll'];
+  function onFirstInteraction() {
+    startMusic();
+    autoStartEvents.forEach(ev => document.removeEventListener(ev, onFirstInteraction, { once: true }));
+  }
+  autoStartEvents.forEach(ev => document.addEventListener(ev, onFirstInteraction, { once: true, passive: true }));
+
+  // Toggle play / pause
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!started) {
+      startMusic();
+      return;
+    }
+    if (audio.paused) {
+      audio.play().catch(() => {});
+      btn.classList.remove('paused');
+      icon.textContent = '🎵';
+    } else {
+      audio.pause();
+      btn.classList.add('paused');
+      icon.textContent = '🔇';
+    }
+  });
+
+  // When looping, jump back to 1:10 instead of the very beginning
+  audio.addEventListener('ended', () => {
+    audio.currentTime = START_TIME;
+    audio.play().catch(() => {});
+  });
+})();

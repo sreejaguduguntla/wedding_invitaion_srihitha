@@ -1549,3 +1549,102 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--rose);
 }
+
+/* ===== MUSIC PLAYER ===== */
+.music-player {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 10000;
+  flex-direction: row-reverse;
+}
+
+.music-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2.5px solid var(--gold);
+  background: linear-gradient(135deg, var(--rose-deep), var(--rose));
+  color: white;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 18px rgba(201,83,90,0.45), 0 0 0 0 rgba(201,83,90,0.3);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  flex-shrink: 0;
+  animation: music-pulse 2.5s infinite;
+}
+
+.music-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 24px rgba(201,83,90,0.6);
+}
+
+.music-btn.paused {
+  animation: none;
+  opacity: 0.75;
+}
+
+@keyframes music-pulse {
+  0%, 100% { box-shadow: 0 4px 18px rgba(201,83,90,0.45), 0 0 0 0 rgba(201,83,90,0.3); }
+  50% { box-shadow: 0 4px 18px rgba(201,83,90,0.45), 0 0 0 10px rgba(201,83,90,0); }
+}
+
+.music-info {
+  background: rgba(45, 10, 10, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--gold-light);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  padding: 7px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(201,169,110,0.35);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.music-player:hover .music-info,
+.music-info.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.music-note-anim {
+  display: inline-block;
+  animation: note-bounce 1s ease-in-out infinite alternate;
+  margin-right: 4px;
+}
+
+@keyframes note-bounce {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-3px); }
+}
+
+@media (max-width: 480px) {
+  .music-player {
+    bottom: 18px;
+    right: 16px;
+  }
+  .music-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+  }
+  .music-info {
+    font-size: 0.68rem;
+    max-width: 160px;
+  }
+}
