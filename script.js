@@ -274,28 +274,30 @@ function tearEnvelope() {
   if (_torn) return;
   _torn = true;
 
-  const stage = document.getElementById('env-stage');
   const intro = document.getElementById('env-intro');
   const cta   = document.getElementById('env-cta');
 
+  // Fade out CTA immediately
   cta.style.opacity = '0';
-  cta.style.transition = 'opacity 0.2s ease';
+  cta.style.transition = 'opacity 0.3s ease';
 
-  // Trigger the split animation
-  stage.classList.add('tearing');
-
-  // Particle burst + music start
+  // Particle burst + music
   burstParticles();
   startMusic();
 
-  // Fade out whole intro
-  setTimeout(() => intro.classList.add('opening'), 450);
+  // Zoom + fade out the whole intro
+  setTimeout(() => {
+    intro.style.transition = 'transform 0.9s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.75s ease';
+    intro.style.transform  = 'scale(1.07)';
+    intro.style.opacity    = '0';
+    intro.style.pointerEvents = 'none';
+  }, 120);
 
-  // Remove intro and restore scrolling
+  // Remove from DOM + restore scrolling
   setTimeout(() => {
     intro.style.display = 'none';
     document.body.classList.remove('intro-active');
-  }, 1050);
+  }, 980);
 }
 
 // Boot
